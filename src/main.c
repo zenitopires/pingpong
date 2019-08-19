@@ -72,6 +72,7 @@ int main()
             ball.vx *= -1;
         }
 
+        // Paddle for bot
         if (ball.y < player2->position.y + player2->position.y/2) {
             player2->position.y -= player2->speed;
         }
