@@ -4,6 +4,7 @@
 static void playerBounds(void);
 static void playerPositions(Paddle* player1, Paddle* player2);
 
+
 int main()
 {
     memset(&app, 0, sizeof(App));
@@ -82,10 +83,17 @@ int main()
         }
 
         if (SDL_HasIntersection(&ball_rect, &player1->position)) {
+            printf("%0.1f\n", ball.vx);
+            ball.vx -= 1;
+            if (ball.vx >= 15)
+                ball.vx = ball.speed * -1;
             ball.vx *= -1;
         }
 
         if (SDL_HasIntersection(&ball_rect, &player2->position)) {
+            ball.vx += 1;
+            if (ball.vx >= 15)
+                ball.vx = ball.speed;
             ball.vx *= -1;
         }
 

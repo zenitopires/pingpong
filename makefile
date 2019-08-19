@@ -1,7 +1,7 @@
 PROG = pingpong
 CC = gcc
 
-FLAGS = -lSDL2
+FLAGS = -lSDL2 -lm
 
 include common.mk
 
