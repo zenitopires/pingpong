@@ -4,9 +4,13 @@
 
 static void playerBounds(void);
 static void playerPositions(Paddle* player1, Paddle* player2);
+static void capFramerate(long* then, float* remainder);
 
 int main()
 {
+    long then;
+    float remainder;
+
     memset(&app, 0, sizeof(App));
     memset(&player1, 0, sizeof(Paddle));
     memset(&player2, 0, sizeof(Paddle));
@@ -31,6 +35,10 @@ int main()
 
     player1->speed = 15;
     player2->speed = 5;
+
+    then = SDL_GetTicks();
+
+    remainder = 0;
 
     // Game loop
     app.running = true;
@@ -113,11 +121,33 @@ int main()
 
         presentScene();
 
-        SDL_Delay(16);
+        capFramerate(&then, &remainder);
     }
     cleanup();
 
     return 0;
+}
+
+static void capFramerate(long* then, float* remainder) {
+    long wait, frameTime;
+
+    wait = 16 + *remainder;
+
+    *remainder -= (int) *remainder;
+
+    frameTime = SDL_GetTicks() - *then;
+
+    wait -= frameTime;
+
+    if (wait < 1) {
+        wait = 1;
+    }
+
+    SDL_Delay(wait);
+
+    *remainder += 0.667;
+
+    *then = SDL_GetTicks();
 }
 
 static void playerPositions(Paddle* player1, Paddle* player2) {
