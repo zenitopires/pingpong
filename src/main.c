@@ -1,5 +1,6 @@
 #include "init.h"
 #include "main.h"
+#include <math.h>
 
 static void playerBounds(void);
 static void playerPositions(Paddle* player1, Paddle* player2);
@@ -25,10 +26,12 @@ int main()
     ball_rect.x = ball.x;
     ball_rect.y = ball.y;
 
+    float bounceAngle;
+
     playerPositions(player1, player2);
 
     player1->speed = 15;
-    player2->speed = 3.5;
+    player2->speed = 5;
 
     // Game loop
     app.running = true;
@@ -83,18 +86,15 @@ int main()
         }
 
         if (SDL_HasIntersection(&ball_rect, &player1->position)) {
-            printf("%0.1f\n", ball.vx);
-            ball.vx -= 1;
-            if (ball.vx >= 15)
-                ball.vx = ball.speed * -1;
-            ball.vx *= -1;
+           bounceAngle = calcAngle(player1->position.y, ball.y, player1->position.h);
+           ball.vy = sin(bounceAngle) * ball.speed;
+           ball.vx = cos(bounceAngle) * ball.speed;
         }
 
         if (SDL_HasIntersection(&ball_rect, &player2->position)) {
-            ball.vx += 1;
-            if (ball.vx >= 15)
-                ball.vx = ball.speed;
-            ball.vx *= -1;
+            bounceAngle = calcAngle(player2->position.y, ball.y, player1->position.h);
+            ball.vy = sin(bounceAngle) * ball.speed * -1;
+            ball.vx = cos(bounceAngle) * ball.speed * -1;
         }
 
         blitRect(app.renderer, &ball_rect);
@@ -107,7 +107,6 @@ int main()
 
         SDL_Delay(16);
     }
-
     cleanup();
 
     return 0;
