@@ -5,7 +5,6 @@
 static void playerBounds(void);
 static void playerPositions(Paddle* player1, Paddle* player2);
 
-
 int main()
 {
     memset(&app, 0, sizeof(App));
@@ -86,12 +85,21 @@ int main()
         }
 
         if (SDL_HasIntersection(&ball_rect, &player1->position)) {
-           bounceAngle = calcAngle(player1->position.y, ball.y, player1->position.h);
-           ball.vy = sin(bounceAngle) * ball.speed;
-           ball.vx = cos(bounceAngle) * ball.speed;
+            ball.speed += 0.5;
+            if (ball.speed >= 15) {
+                ball.speed = 15;
+            }
+            bounceAngle = calcAngle(player1->position.y, ball.y, player1->position.h); 
+            ball.vy = sin(bounceAngle) * ball.speed;
+            ball.vx = cos(bounceAngle) * ball.speed;
         }
 
+
         if (SDL_HasIntersection(&ball_rect, &player2->position)) {
+            ball.speed += 0.5;
+            if (ball.speed >= 15) {
+                ball.speed = 15;
+            }
             bounceAngle = calcAngle(player2->position.y, ball.y, player1->position.h);
             ball.vy = sin(bounceAngle) * ball.speed * -1;
             ball.vx = cos(bounceAngle) * ball.speed * -1;
