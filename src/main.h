@@ -6,6 +6,8 @@ extern void prepareScene(void);
 extern void presentScene(void);
 //extern void drawTex(SDL_Texture* texture, int x, int y);
 //extern SDL_Texture* loadTex(char* filename);
+extern Mix_Chunk* loadSoundEffect(char* filename);
+extern void cleanup_audio(Mix_Chunk* soundEffect);
 extern float calcAngle(float, float, float);
 extern Ball new_Ball(Ball ball);
 extern void paddleHit(Ball* ball, Paddle* player);

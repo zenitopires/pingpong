@@ -40,6 +40,10 @@ int main()
 
     remainder = 0;
 
+    Mix_Chunk* pingHit;
+    pingHit = malloc(sizeof(Mix_Chunk));
+    pingHit = loadSoundEffect("sounds/ping_hit.wav");
+
     // Game loop
     app.running = true;
     while (app.running) {
@@ -93,6 +97,7 @@ int main()
         }
 
         if (SDL_HasIntersection(&ball_rect, &player1->position)) {
+            Mix_PlayChannel(-1, pingHit, 0);
             ball.speed += 0.5;
             if (ball.speed >= 15) {
                 ball.speed = 15;
@@ -104,6 +109,7 @@ int main()
 
 
         if (SDL_HasIntersection(&ball_rect, &player2->position)) {
+            Mix_PlayChannel(-1, pingHit, 0);
             ball.speed += 0.5;
             if (ball.speed >= 15) {
                 ball.speed = 15;
@@ -123,20 +129,23 @@ int main()
 
         capFramerate(&then, &remainder);
     }
+
     cleanup();
+
+    cleanup_audio(pingHit);
+
+    free(player1);
+    free(player2);
 
     return 0;
 }
 
 static void capFramerate(long* then, float* remainder) {
+
     long wait, frameTime;
-
     wait = 16 + *remainder;
-
     *remainder -= (int) *remainder;
-
     frameTime = SDL_GetTicks() - *then;
-
     wait -= frameTime;
 
     if (wait < 1) {
@@ -144,13 +153,13 @@ static void capFramerate(long* then, float* remainder) {
     }
 
     SDL_Delay(wait);
-
     *remainder += 0.667;
-
     *then = SDL_GetTicks();
+
 }
 
 static void playerPositions(Paddle* player1, Paddle* player2) {
+
     player1->position.x = 20;
     player1->position.y = SCREEN_HEIGHT/2 - 80;
     player1->position.h = 150;
@@ -160,15 +169,19 @@ static void playerPositions(Paddle* player1, Paddle* player2) {
     player2->position.y = SCREEN_HEIGHT/2 - 80;
     player2->position.h = 150;
     player2->position.w = 20;
+
 }
 
 static void playerBounds(void) {
+
     if (player1 != NULL) {
         if (player1->position.y < 15) {
             player1->position.y = 0;
         }
+
         if (player1->position.y > SCREEN_HEIGHT - player1->position.h) {
             player1->position.y = SCREEN_HEIGHT - player1->position.h;
         }
     }
+
 }

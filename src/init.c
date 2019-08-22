@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <stdlib.h>
+#include <SDL2/SDL_mixer.h>
 #include "init.h"
 #include "defs.h"
 
@@ -10,8 +11,12 @@ void init(char* string) {
     windowFlags = 0;
     rendererFlags = SDL_RENDERER_ACCELERATED;
 
-    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) != 0) {
+    if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
         SDL_Log("Cannot initialize SDL: %s", SDL_GetError());
+        exit(1);
+    }
+
+    if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {
         exit(1);
     }
 
