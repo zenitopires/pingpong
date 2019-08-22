@@ -6,5 +6,6 @@ A ping pong game clone. Created using the Simple DirectMedia Library (SDL). Curr
 ### Instructions
 To build the game, just change into the PingPong directory and type `make`.
 
-### Dependencies
-SDL2
+## Dependencies
+### Required
+`SDL2`, `SDL_mixer`
