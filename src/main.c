@@ -5,7 +5,7 @@
 int main()
 {
     long then;
-    float remainder;
+    float remainder, bounceAngle;
 
     memset(&app, 0, sizeof(App));
     memset(&player1, 0, sizeof(Paddle));
@@ -24,8 +24,6 @@ int main()
     ball_rect.h = 10;
     ball_rect.x = ball.x;
     ball_rect.y = ball.y;
-
-    float bounceAngle;
 
     playerPositions(player1, player2);
 
