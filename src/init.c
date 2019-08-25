@@ -1,7 +1,8 @@
 #include <stdio.h>
-#include <SDL2/SDL.h>
 #include <stdlib.h>
+#include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
+#include <SDL2/SDL_ttf.h>
 #include "init.h"
 #include "defs.h"
 
@@ -15,9 +16,23 @@ void init(char* string) {
         SDL_Log("Cannot initialize SDL: %s", SDL_GetError());
         exit(1);
     }
+    else {
+        printf("SDL Initiliazed...\n");
+    }
 
     if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {
         exit(1);
+    }
+    else {
+        printf("SDL Mixer initialized...\n");
+    }
+
+    if (TTF_Init() == -1) {
+        printf("SDL_ttf could not be initialized: %s\n", TTF_GetError());
+        exit(1);
+    }
+    else  {
+        printf("SDL TTF initialized...\n");
     }
 
     app.window = SDL_CreateWindow(

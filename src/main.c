@@ -6,12 +6,20 @@ int main()
 {
     long then;
     float remainder, bounceAngle;
+    char buffer[512];
+
+    SDL_Texture* scorePlayer1;
+    SDL_Texture* scorePlayer2;
 
     memset(&app, 0, sizeof(App));
     memset(&player1, 0, sizeof(Paddle));
     memset(&player2, 0, sizeof(Paddle));
 
     init("Ping Pong by Zenito Pires");
+
+    // Setup FPS
+    then = SDL_GetTicks();
+    remainder = 0;
 
     player1 = malloc(sizeof(Paddle));
     player2 = malloc(sizeof(Paddle));
@@ -33,9 +41,9 @@ int main()
     player1->speed = 15;
     player2->speed = 5;
 
-    then = SDL_GetTicks();
-
-    remainder = 0;
+    // Set initial scores
+    player1->score = 0;
+    player2->score = 0;
 
     Mix_Chunk* pingHit;
     pingHit = malloc(sizeof(Mix_Chunk));
@@ -72,6 +80,7 @@ int main()
         }
 
         if (ball.x + 10 < 0) {
+            player2->score++;
             ball.speed = STARTBALLSPEED;
             ball.x = player1->position.x + player1->position.w;
             ball.y = player1->position.y + player1->position.h/2;
@@ -79,6 +88,7 @@ int main()
         }
 
         if (ball.x >= SCREEN_WIDTH) {
+            player1->score++;
             ball.speed = STARTBALLSPEED;
             ball.x = player2->position.x - player2->position.w;
             ball.y = player2->position.y + player2->position.h/2;
@@ -117,6 +127,13 @@ int main()
             player2->position.y += player2->speed;
         }
 
+        sprintf(buffer, "%d", player1->score);
+        scorePlayer1 = loadFont("fonts/arial.ttf", buffer);
+        sprintf(buffer, "%d", player2->score);
+        scorePlayer2 = loadFont("fonts/arial.ttf", buffer);
+
+        drawFont(scorePlayer1, SCREEN_WIDTH/4, 10);
+        drawFont(scorePlayer2, SCREEN_WIDTH/4 + SCREEN_WIDTH/2, 10);
         blitRect(app.renderer, &ball_rect);
         blitRect(app.renderer, &player1->position);
         blitRect(app.renderer, &player2->position);

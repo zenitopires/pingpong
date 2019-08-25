@@ -16,6 +16,7 @@ typedef struct {
 typedef struct {
     SDL_Rect position;
     int speed;
+    int score;
 } Paddle;
 
 typedef struct {
