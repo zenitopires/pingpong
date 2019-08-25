@@ -57,6 +57,7 @@ void init(char* string) {
         printf("Could not create renderer: %s\n", SDL_GetError());
         exit(1);
     }
+    printf("All systems fine... Starting game\n");
 }
 
 void cleanup(void) {
