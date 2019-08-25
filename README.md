@@ -11,4 +11,4 @@ In the the terminal type `git clone https://github.com/zenitopires/pingpong.git`
 
 ## Dependencies
 ### Required
-`SDL2`, `SDL_mixer`
+`SDL2`, `SDL_mixer`, `SDL_ttf`
