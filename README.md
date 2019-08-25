@@ -6,7 +6,7 @@ A ping pong game clone. Created using the Simple DirectMedia Library (SDL). Curr
 ## Workspace requirements
 `git`, `make`, `gcc`
 
-### Instructions
+### Linux Instructions
 In the the terminal type `git clone https://github.com/zenitopires/pingpong.git` to fetch the repository, `cd` into the game's directory and type `make` to build the game. Execute the game by typing `./pingpong`. 
 
 ## Dependencies
