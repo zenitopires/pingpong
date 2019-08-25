@@ -1,7 +1,7 @@
 # Ping Pong Clone
 A ping pong game clone. Created using the Simple DirectMedia Library (SDL). Currently a work in progress.
 
-![Preview of Ping Pong Clone](https://github.com/zenitopires/pingpong/blob/master/img/Screenshot%20from%202019-08-18%2000-50-43.png)
+![Preview of Ping Pong Clone](https://github.com/zenitopires/PingPong/blob/master/img/ping_pong.png)
 
 ## Workspace requirements
 `git`, `make`, `gcc`
