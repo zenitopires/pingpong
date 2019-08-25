@@ -1,5 +1,5 @@
 # Ping Pong Clone
-A ping pong game clone. Created using the Simple DirectMedia Library (SDL). Currently a work in progress.
+A ping pong game clone. Created using the Simple DirectMedia Library (SDL).
 
 ![Preview of Ping Pong Clone](https://github.com/zenitopires/PingPong/blob/master/img/ping_pong.png)
 
