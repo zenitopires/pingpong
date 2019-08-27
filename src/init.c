@@ -24,7 +24,7 @@ void init(char* string) {
         exit(1);
     }
     else {
-        printf("SDL Mixer initialized...\n");
+        printf("SDL_mixer initialized...\n");
     }
 
     if (TTF_Init() == -1) {
@@ -32,7 +32,7 @@ void init(char* string) {
         exit(1);
     }
     else  {
-        printf("SDL TTF initialized...\n");
+        printf("SDL_ttf initialized...\n");
     }
 
     app.window = SDL_CreateWindow(
