@@ -1,6 +1,4 @@
-#include "init.h"
 #include "main.h"
-#include <math.h>
 
 int main()
 {
@@ -25,7 +23,7 @@ int main()
     player2 = malloc(sizeof(Paddle));
 
     Ball ball;
-    ball = new_Ball(ball);
+    ball = ballPosition(ball);
 
     // Set ball rect properties
     SDL_Rect ball_rect;
@@ -52,6 +50,7 @@ int main()
 
     // Game loop
     app.running = true;
+    app.paused = false;
     while (app.running) {
         prepareScene();
 
@@ -81,19 +80,19 @@ int main()
         }
 
         if (ball.x + 10 < 0) {
-            player2->score++;
             ball.speed = STARTBALLSPEED;
             ball.x = player1->position.x + player1->position.w;
             ball.y = player1->position.y + player1->position.h/2;
-            ball.vx *= -1;
+            ball.vx = STARTBALLSPEED;
+            player2->score++;
         }
 
         if (ball.x >= SCREEN_WIDTH) {
-            player1->score++;
             ball.speed = STARTBALLSPEED;
             ball.x = player2->position.x - player2->position.w;
             ball.y = player2->position.y + player2->position.h/2;
-            ball.vx *= -1;
+            ball.vx = STARTBALLSPEED;
+            player1->score++;
         }
 
         if (SDL_HasIntersection(&ball_rect, &player1->position)) {
@@ -102,7 +101,7 @@ int main()
             if (ball.speed >= MAXBALLSPEED) {
                 ball.speed = MAXBALLSPEED;
             }
-            bounceAngle = calcAngle(player1->position.y, ball.y, player1->position.h); 
+            bounceAngle = calcAngle(player1->position.y, ball.y, player1->position.h);
             ball.vy = sin(bounceAngle) * ball.speed;
             ball.vx = cos(bounceAngle) * ball.speed;
         }
@@ -127,7 +126,7 @@ int main()
         if (ball.y > player2->position.y + player2->position.y/2) {
             player2->position.y += player2->speed;
         }
-        
+
         // score text update
         sprintf(buffer, "%d", player1->score);
         scorePlayer1 = loadFont("fonts/arial.ttf", buffer);

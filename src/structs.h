@@ -7,6 +7,7 @@
 
 typedef struct {
     bool running;
+    bool paused;
     SDL_Window* window;
     SDL_Renderer* renderer;
     int up;

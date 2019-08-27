@@ -3,7 +3,7 @@
 #include "structs.h"
 #include "defs.h"
 
-Ball new_Ball(Ball ball) {
+Ball ballPosition(Ball ball) {
     srand(time(NULL));
     ball.x = SCREEN_WIDTH / 2;
     ball.y = SCREEN_HEIGHT / 2;

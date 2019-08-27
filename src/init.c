@@ -17,7 +17,7 @@ void init(char* string) {
         exit(1);
     }
     else {
-        printf("SDL Initiliazed...\n");
+        printf("SDL initiliazed...\n");
     }
 
     if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {

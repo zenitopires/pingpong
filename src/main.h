@@ -13,7 +13,7 @@ extern void playerBounds(Paddle* player);
 extern void capFramerate(long* then, float* remainder);
 extern float calcAngle(float, float, float);
 extern char* toString(char str[], int num);
-extern Ball new_Ball(Ball ball);
+extern Ball ballPosition(Ball ball);
 extern void paddleHit(Ball* ball, Paddle* player);
 extern void blitRect(SDL_Renderer* renderer, const SDL_Rect* rect);
 extern void drawFont(SDL_Texture* fontTexture, int x, int y);
