@@ -27,7 +27,7 @@ int main()
     Ball ball;
     ball = new_Ball(ball);
 
-    // ball rect properties
+    // Set ball rect properties
     SDL_Rect ball_rect;
     ball_rect.w = 10;
     ball_rect.h = 10;
@@ -45,6 +45,7 @@ int main()
     player1->score = 0;
     player2->score = 0;
 
+    // Set up sound effect
     Mix_Chunk* pingHit;
     pingHit = malloc(sizeof(Mix_Chunk));
     pingHit = loadSoundEffect("sounds/ping_hit.wav");
@@ -126,12 +127,15 @@ int main()
         if (ball.y > player2->position.y + player2->position.y/2) {
             player2->position.y += player2->speed;
         }
-
+        
+        // score text update
         sprintf(buffer, "%d", player1->score);
         scorePlayer1 = loadFont("fonts/arial.ttf", buffer);
         sprintf(buffer, "%d", player2->score);
         scorePlayer2 = loadFont("fonts/arial.ttf", buffer);
 
+
+        // blit rects
         drawFont(scorePlayer1, SCREEN_WIDTH/4, 10);
         drawFont(scorePlayer2, SCREEN_WIDTH/4 + SCREEN_WIDTH/2, 10);
         blitRect(app.renderer, &ball_rect);
