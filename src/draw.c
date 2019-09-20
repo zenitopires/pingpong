@@ -5,6 +5,7 @@ void prepareScene(void) {
     SDL_RenderClear(app.renderer);
 }
 
+
 void presentScene(void) {
     SDL_RenderPresent(app.renderer);
 }
@@ -60,11 +61,10 @@ SDL_Texture* loadFont(char* filename, char buffer[]) {
 
 void drawFont(SDL_Texture* fontTexture, int x, int y) {
     SDL_Rect message_rect;
-    
+
     message_rect.x = x;
     message_rect.y = y;
-    message_rect.w = 24;
-    message_rect.h = 24;
+    SDL_QueryTexture(fontTexture, NULL, NULL, &message_rect.w, &message_rect.h);
 
     SDL_RenderCopy(app.renderer, fontTexture, NULL, &message_rect);
 }

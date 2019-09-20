@@ -129,9 +129,9 @@ int main()
 
         // score text update
         sprintf(buffer, "%d", player1->score);
-        scorePlayer1 = loadFont("fonts/arial.ttf", buffer);
+        scorePlayer1 = loadFont("fonts/FreeSans.ttf", buffer);
         sprintf(buffer, "%d", player2->score);
-        scorePlayer2 = loadFont("fonts/arial.ttf", buffer);
+        scorePlayer2 = loadFont("fonts/FreeSans.ttf", buffer);
 
 
         // blit rects
