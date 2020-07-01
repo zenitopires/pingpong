@@ -12,9 +12,6 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
       $ sudo dnf install gcc
       $ sudo dnf install make
 
-### Linux Instructions
-In the the terminal type `git clone https://github.com/zenitopires/pingpong.git` to fetch the repository, `cd` into the game's directory and type `make` to build the game. Execute the game by typing `./pingpong`. 
-
 ## Dependencies
 ### Required
 `SDL2`, `SDL_mixer`, `SDL_ttf`
@@ -28,3 +25,13 @@ In the the terminal type `git clone https://github.com/zenitopires/pingpong.git`
       $ sudo dnf install SDL2_ttf-devel
       $ sudo dnf install SDL2_mixer-devel
       $ sudo dnf install SDL2-devel
+
+
+## Usage
+
+### Linux Instructions
+
+    $ git clone https://github.com/zenitopires/pingpong.git
+    $ cd PingPong
+    $ make
+    $ ./pingpong
