@@ -13,7 +13,7 @@ In the the terminal type `git clone https://github.com/zenitopires/pingpong.git`
 ### Required
 `SDL2`, `SDL_mixer`, `SDL_ttf`
 
-- ### Installation on Fedora (should be similar to other Linux distros)
+### Installation on Fedora (should be similar to other Linux distros)
   (Tested recently on Fedora 31)
   
   Install the following SDL2 libraries
