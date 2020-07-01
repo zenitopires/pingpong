@@ -15,9 +15,10 @@ In the the terminal type `git clone https://github.com/zenitopires/pingpong.git`
 
 - ### Installation on Fedora (should be similar to other Linux distros)
   (Tested recently on Fedora 31)
+  
   Install the following SDL2 libraries
 
-     $ sudo dnf install SDL2_image-devel
-     $ sudo dnf install SDL2_ttf-devel
-     $ sudo dnf install SDL2_mixer-devel
-     $ sudo dnf install SDL2-devel
+      $ sudo dnf install SDL2_image-devel
+      $ sudo dnf install SDL2_ttf-devel
+      $ sudo dnf install SDL2_mixer-devel
+      $ sudo dnf install SDL2-devel
