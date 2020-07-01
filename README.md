@@ -6,6 +6,12 @@ A ping pong game clone. Created using the Simple DirectMedia Library (SDL).
 ## Workspace requirements
 `git`, `make`, `gcc`
 
+gcc should be installed by default on Fedora (but if for some reason it isn't...)
+- #### `git`, `make`, and `gcc` Fedora Installation
+      $ sudo dnf install git
+      $ sudo dnf install gcc
+      $ sudo dnf install make
+
 ### Linux Instructions
 In the the terminal type `git clone https://github.com/zenitopires/pingpong.git` to fetch the repository, `cd` into the game's directory and type `make` to build the game. Execute the game by typing `./pingpong`. 
 
@@ -13,10 +19,10 @@ In the the terminal type `git clone https://github.com/zenitopires/pingpong.git`
 ### Required
 `SDL2`, `SDL_mixer`, `SDL_ttf`
 
-### Installation on Fedora (should be similar to other Linux distros)
+### SDL2
   7/1/2020 -- (Tested recently on Fedora 31)
   
-- #### Fedora 31+ SDL2 installation
+- #### SDL2 installation on Fedora
 
       $ sudo dnf install SDL2_image-devel
       $ sudo dnf install SDL2_ttf-devel
