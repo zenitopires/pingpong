@@ -33,15 +33,15 @@ int main()
     PlayerPositions(player1, player2);
 
     // Set speed
-    SetSpeed(&player1, &player2);
+    SetSpeed(player1, player2);
 
     // Set initial scores
-    SetScore(&player1, &player2);
+    SetScore(player1, player2);
 
     // Set up sound effect
     Mix_Chunk* pingHit;
     pingHit = malloc(sizeof(Mix_Chunk));
-    pingHit = LoadSoundEffect("../sounds/ping_hit.wav");
+    pingHit = LoadSoundEffect("./sounds/ping_hit.wav");
 
     // Game loop
     app.running = true;
@@ -68,9 +68,9 @@ int main()
 
         // score text update
         sprintf(buffer, "%d", player1->score);
-        ScorePlayer1 = LoadFont("../fonts/FreeSans.ttf", buffer);
+        ScorePlayer1 = LoadFont("./fonts/FreeSans.ttf", buffer);
         sprintf(buffer, "%d", player2->score);
-        ScorePlayer2 = LoadFont("../fonts/FreeSans.ttf", buffer);
+        ScorePlayer2 = LoadFont("./fonts/FreeSans.ttf", buffer);
 
         // blit rects
         DrawFont(ScorePlayer1, SCREEN_WIDTH/4, 10);
