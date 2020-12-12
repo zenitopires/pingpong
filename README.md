@@ -4,7 +4,7 @@ A ping pong game clone. Created using the Simple DirectMedia Library (SDL).
 ![Preview of Ping Pong Clone](https://github.com/zenitopires/PingPong/blob/master/img/ping_pong.png)
 
 ## Workspace requirements
-`git`, `make`, `gcc`, 'cmake'
+`git`, `make`, `gcc`, `cmake`
 
 gcc should be installed by default on Fedora (but if for some reason it isn't...)
 - #### `git`, `make`, `cmake`, and `gcc` Fedora Installation
@@ -14,10 +14,10 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
       $ sudo dnf install cmake
 
 - #### Arch Linux
-     $ sudo pacman -S git
-     $ sudo pacman -S gcc
-     $ sudo pacman -S make
-     $ sudo pacman -S cmake
+      $ sudo pacman -S git
+      $ sudo pacman -S gcc
+      $ sudo pacman -S make
+      $ sudo pacman -S cmake
 
 ## Dependencies
 ### Required
@@ -47,4 +47,5 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
     $ mkdir build
     $ cmake -S . -B build
     $ cd build
+    $ make
     $ ./PingPong
