@@ -14,7 +14,7 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
 
 ## Dependencies
 ### Required
-`SDL2`, `SDL_mixer`, `SDL_ttf`
+`SDL2`, `SDL_mixer`, `SDL_ttf`, `SDL_image`
 
 ### SDL2
   7/1/2020 -- (Tested recently on Fedora 31)
@@ -25,6 +25,12 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
       $ sudo dnf install SDL2_ttf-devel
       $ sudo dnf install SDL2_mixer-devel
       $ sudo dnf install SDL2-devel
+      
+- #### SDL2 installation on Arch Linux
+      $ sudo pacman -S sdl2
+      $ sudo pacman -S sdl2_image
+      $ sudo pacman -S sdl2_ttf
+      $ sudo pacman -S sdl2_mixer
 
 
 ## Usage

@@ -3,10 +3,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_mixer.h>
 #include <SDL2/SDL_ttf.h>
-#include "init.h"
-#include "defs.h"
+#include "headers/init.h"
+#include "headers/defs.h"
+#include "headers/log.h"
 
-void init(char* string) {
+void Init(char* string) {
     int windowFlags, rendererFlags;
 
     windowFlags = 0;
@@ -21,18 +22,19 @@ void init(char* string) {
     }
 
     if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {
+        log_debug("Failed to initialize audio: %s", Mix_GetError());
         exit(1);
     }
     else {
-        printf("SDL_mixer initialized...\n");
+        log_debug("SDL_mixer initialized successfully.");
     }
 
     if (TTF_Init() == -1) {
-        printf("SDL_ttf could not be initialized: %s\n", TTF_GetError());
+        log_debug("SDL_ttf could not be initialized: %s", TTF_GetError());
         exit(1);
     }
     else  {
-        printf("SDL_ttf initialized...\n");
+        log_debug("SDL_ttf initialized successfully.");
     }
 
     app.window = SDL_CreateWindow(
@@ -45,7 +47,7 @@ void init(char* string) {
     );
 
     if (app.window == NULL) {
-        printf("Could not create window: %s\n", SDL_GetError());
+        log_debug("Could not create window: %s", SDL_GetError());
         exit(1);
     }
 
@@ -54,16 +56,14 @@ void init(char* string) {
     app.renderer = SDL_CreateRenderer(app.window, -1, rendererFlags);
 
     if (app.renderer == NULL) {
-        printf("Could not create renderer: %s\n", SDL_GetError());
+        log_debug("Could not create renderer: %s", SDL_GetError());
         exit(1);
     }
-    printf("All systems fine... Starting game\n");
+    log_debug("All systems fine. Starting game.");
 }
 
-void cleanup(void) {
+void CleanUp(void) {
     SDL_DestroyRenderer(app.renderer);
-
     SDL_DestroyWindow(app.window);
-
     SDL_Quit();
 }
