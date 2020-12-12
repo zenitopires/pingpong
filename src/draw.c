@@ -1,12 +1,12 @@
-#include "draw.h"
+#include "headers/draw.h"
 
-void prepareScene(void) {
+void PrepareScene(void) {
     SDL_SetRenderDrawColor(app.renderer, 0, 0, 0, 255);
     SDL_RenderClear(app.renderer);
 }
 
 
-void presentScene(void) {
+void PresentScene(void) {
     SDL_RenderPresent(app.renderer);
 }
 
@@ -32,7 +32,7 @@ void drawTex(SDL_Texture* texture, int x, int y) {
 }
 */
 
-SDL_Texture* loadFont(char* filename, char buffer[]) {
+SDL_Texture* LoadFont(char* filename, char buffer[]) {
     TTF_Font* font;
     SDL_Color color = {255, 255, 255};
 
@@ -59,7 +59,7 @@ SDL_Texture* loadFont(char* filename, char buffer[]) {
     return message;
 }
 
-void drawFont(SDL_Texture* fontTexture, int x, int y) {
+void DrawFont(SDL_Texture* fontTexture, int x, int y) {
     SDL_Rect message_rect;
 
     message_rect.x = x;
@@ -69,7 +69,7 @@ void drawFont(SDL_Texture* fontTexture, int x, int y) {
     SDL_RenderCopy(app.renderer, fontTexture, NULL, &message_rect);
 }
 
-void blitRect(SDL_Renderer* renderer, const SDL_Rect* rect) {
+void BlitRect(SDL_Renderer* renderer, const SDL_Rect* rect) {
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
         SDL_RenderFillRect(renderer, rect);
         SDL_RenderDrawRect(renderer, rect);

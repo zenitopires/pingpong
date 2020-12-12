@@ -10,3 +10,5 @@
 #include "init.h"
 #include "defs.h"
 #include "structs.h"
+#include "log.h"
+#include "util.h"
