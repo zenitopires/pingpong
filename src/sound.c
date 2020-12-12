@@ -1,6 +1,7 @@
-#include "sound.h"
+#include "headers/sound.h"
 
-Mix_Chunk* loadSoundEffect(char* filePath) {
+Mix_Chunk* LoadSoundEffect(char* filePath) {
+    log_debug("Loading sound effects.");
     Mix_Chunk* soundEffect;
     soundEffect = Mix_LoadWAV(filePath);
 
@@ -12,7 +13,8 @@ Mix_Chunk* loadSoundEffect(char* filePath) {
     return soundEffect;
 }
 
-void cleanup_audio(Mix_Chunk* soundEffect) {
+void CleanupAudio(Mix_Chunk* soundEffect) {
+    log_debug("Freeing audio clips.");
     Mix_FreeChunk(soundEffect);
     soundEffect = NULL;
     Mix_Quit();

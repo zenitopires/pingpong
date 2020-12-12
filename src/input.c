@@ -1,9 +1,9 @@
-#include "input.h"
+#include "headers/input.h"
 
-void processDownKey(SDL_KeyboardEvent* event);
-void processUpKey(SDL_KeyboardEvent* event);
+static void ProcessDownKey(SDL_KeyboardEvent* event);
+static void ProcessUpKey(SDL_KeyboardEvent* event);
 
-void getInput(void) {
+void GetInput(void) {
     SDL_Event event;
 
     while (SDL_PollEvent(&event))
@@ -16,11 +16,11 @@ void getInput(void) {
                 break;
 
             case SDL_KEYDOWN:
-                processDownKey(&event.key);
+                ProcessDownKey(&event.key);
                 break;
 
             case SDL_KEYUP:
-                processUpKey(&event.key);
+                ProcessUpKey(&event.key);
                 break;
 
             default:
@@ -29,7 +29,7 @@ void getInput(void) {
     }
 }
 
-void processDownKey(SDL_KeyboardEvent* event)
+static void ProcessDownKey(SDL_KeyboardEvent* event)
 {
     if (event->repeat == 0) {
         if (event->keysym.scancode == SDL_SCANCODE_UP) {
@@ -41,7 +41,7 @@ void processDownKey(SDL_KeyboardEvent* event)
     }
 }
 
-void processUpKey(SDL_KeyboardEvent* event) {
+static void ProcessUpKey(SDL_KeyboardEvent* event) {
     if (event->repeat == 0) {
         if (event->keysym.scancode == SDL_SCANCODE_UP) {
             app.up = 0;

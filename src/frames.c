@@ -1,12 +1,12 @@
-#include "common.h"
+#include "headers/common.h"
 
-void capFramerate(long* then, float* remainder) {
+void CapFramerate(long* then, float* remainder) {
 
-    long wait, frameTime;
+    long wait, frame_time;
     wait = 16 + *remainder;
     *remainder -= (int) *remainder;
-    frameTime = SDL_GetTicks() - *then;
-    wait -= frameTime;
+    frame_time = SDL_GetTicks() - *then;
+    wait -= frame_time;
 
     if (wait < 1) {
         wait = 1;

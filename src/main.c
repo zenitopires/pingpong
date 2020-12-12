@@ -1,4 +1,4 @@
-#include "main.h"
+#include "headers/main.h"
 
 int main()
 {
@@ -6,14 +6,14 @@ int main()
     float remainder, bounceAngle;
     char buffer[512];
 
-    SDL_Texture* scorePlayer1;
-    SDL_Texture* scorePlayer2;
+    SDL_Texture* ScorePlayer1;
+    SDL_Texture* ScorePlayer2;
 
     memset(&app, 0, sizeof(App));
     memset(&player1, 0, sizeof(Paddle));
     memset(&player2, 0, sizeof(Paddle));
 
-    init("Ping Pong by Zenito Pires");
+    Init("Ping Pong");
 
     // Setup FPS
     then = SDL_GetTicks();
@@ -23,38 +23,33 @@ int main()
     player2 = malloc(sizeof(Paddle));
 
     Ball ball;
-    ball = ballPosition(ball);
+    ball = BallPosition(ball);
 
     // Set ball rect properties
     SDL_Rect ball_rect;
-    ball_rect.w = 10;
-    ball_rect.h = 10;
-    ball_rect.x = ball.x;
-    ball_rect.y = ball.y;
+    BallProps(&ball_rect, &ball);
 
     // Set paddle positions
-    playerPositions(player1, player2);
+    PlayerPositions(player1, player2);
 
     // Set speed
-    player1->speed = 15;
-    player2->speed = 5;
+    SetSpeed(&player1, &player2);
 
     // Set initial scores
-    player1->score = 0;
-    player2->score = 0;
+    SetScore(&player1, &player2);
 
     // Set up sound effect
     Mix_Chunk* pingHit;
     pingHit = malloc(sizeof(Mix_Chunk));
-    pingHit = loadSoundEffect("sounds/ping_hit.wav");
+    pingHit = LoadSoundEffect("../sounds/ping_hit.wav");
 
     // Game loop
     app.running = true;
     app.paused = false;
     while (app.running) {
-        prepareScene();
+        PrepareScene();
 
-        getInput();
+        GetInput();
 
         if (app.up) {
             player1->position.y -= player1->speed;
@@ -68,89 +63,32 @@ int main()
         ball_rect.x = (int) ball.x;
         ball_rect.y = (int) ball.y;
 
-        // Ball collision detection
-        if (ball.y < 0) {
-            ball.y = 0;
-            ball.vy *= -1;
-        }
-
-        if (ball.y + 10 >= SCREEN_HEIGHT) {
-            ball.y = SCREEN_HEIGHT - 10;
-            ball.vy *= -1;
-        }
-
-        if (ball.x + 10 < 0) {
-            ball.speed = STARTBALLSPEED;
-            ball.x = player1->position.x + player1->position.w;
-            ball.y = player1->position.y + player1->position.h/2;
-            ball.vx = STARTBALLSPEED;
-            player2->score++;
-        }
-
-        if (ball.x >= SCREEN_WIDTH) {
-            ball.speed = STARTBALLSPEED;
-            ball.x = player2->position.x - player2->position.w;
-            ball.y = player2->position.y + player2->position.h/2;
-            ball.vx = STARTBALLSPEED;
-            player1->score++;
-        }
-
-        if (SDL_HasIntersection(&ball_rect, &player1->position)) {
-            Mix_PlayChannel(-1, pingHit, 0);
-            ball.speed += 0.5;
-            if (ball.speed >= MAXBALLSPEED) {
-                ball.speed = MAXBALLSPEED;
-            }
-            bounceAngle = calcAngle(player1->position.y, ball.y, player1->position.h);
-            ball.vy = sin(bounceAngle) * ball.speed;
-            ball.vx = cos(bounceAngle) * ball.speed;
-        }
-
-
-        if (SDL_HasIntersection(&ball_rect, &player2->position)) {
-            Mix_PlayChannel(-1, pingHit, 0);
-            ball.speed += 0.5;
-            if (ball.speed >= MAXBALLSPEED) {
-                ball.speed = MAXBALLSPEED;
-            }
-            bounceAngle = calcAngle(player2->position.y, ball.y, player1->position.h);
-            ball.vy = sin(bounceAngle) * ball.speed * -1;
-            ball.vx = cos(bounceAngle) * ball.speed * -1;
-        }
-
-        // Paddle for bot
-        if (ball.y < player2->position.y + player2->position.y/2) {
-            player2->position.y -= player2->speed;
-        }
-
-        if (ball.y > player2->position.y + player2->position.y/2) {
-            player2->position.y += player2->speed;
-        }
+        // Ball collision detection and tracking
+        CollisionCheck(&ball, &ball_rect, player1, player2, pingHit);
 
         // score text update
         sprintf(buffer, "%d", player1->score);
-        scorePlayer1 = loadFont("fonts/FreeSans.ttf", buffer);
+        ScorePlayer1 = LoadFont("../fonts/FreeSans.ttf", buffer);
         sprintf(buffer, "%d", player2->score);
-        scorePlayer2 = loadFont("fonts/FreeSans.ttf", buffer);
-
+        ScorePlayer2 = LoadFont("../fonts/FreeSans.ttf", buffer);
 
         // blit rects
-        drawFont(scorePlayer1, SCREEN_WIDTH/4, 10);
-        drawFont(scorePlayer2, SCREEN_WIDTH/4 + SCREEN_WIDTH/2, 10);
-        blitRect(app.renderer, &ball_rect);
-        blitRect(app.renderer, &player1->position);
-        blitRect(app.renderer, &player2->position);
+        DrawFont(ScorePlayer1, SCREEN_WIDTH/4, 10);
+        DrawFont(ScorePlayer2, SCREEN_WIDTH/4 + SCREEN_WIDTH/2, 10);
+        BlitRect(app.renderer, &ball_rect);
+        BlitRect(app.renderer, &player1->position);
+        BlitRect(app.renderer, &player2->position);
 
-        playerBounds(player1);
+        PlayerBounds(player1);
 
-        presentScene();
+        PresentScene();
 
-        capFramerate(&then, &remainder);
+        CapFramerate(&then, &remainder);
     }
 
-    cleanup();
+    CleanUp();
 
-    cleanup_audio(pingHit);
+    CleanupAudio(pingHit);
 
     free(player1);
     free(player2);
