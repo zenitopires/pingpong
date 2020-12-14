@@ -19,8 +19,10 @@ extern void BallProps(SDL_Rect* ball_rect, Ball* ball);
 extern void CollisionCheck(Ball* ball, SDL_Rect* ball_rect,
                            Paddle* player1, Paddle* player2,
                            Mix_Chunk* pingHit);
+extern void MovePaddle(Paddle* player);
+extern void MoveBall(Ball* ball, SDL_Rect* ball_rect);
+extern void SetScore(Paddle* player1, Paddle* player2);
 extern void SetSpeed(Paddle* player1, Paddle* player2);
-void SetScore(Paddle* player1, Paddle* player2);
 
 // Drawing
 extern void BlitRect(SDL_Renderer* renderer, const SDL_Rect* rect);

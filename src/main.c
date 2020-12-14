@@ -51,28 +51,17 @@ int main()
 
         GetInput();
 
-        if (app.up) {
-            player1->position.y -= player1->speed;
-        }
-        if (app.down) {
-            player1->position.y += player1->speed;
-        }
+        MovePaddle(player1);
 
-        ball.x += ball.vx;
-        ball.y += ball.vy;
-        ball_rect.x = (int) ball.x;
-        ball_rect.y = (int) ball.y;
+        MoveBall(&ball, &ball_rect);
 
-        // Ball collision detection and tracking
         CollisionCheck(&ball, &ball_rect, player1, player2, pingHit);
 
-        // score text update
         sprintf(buffer, "%d", player1->score);
         ScorePlayer1 = LoadFont("../fonts/FreeSans.ttf", buffer);
         sprintf(buffer, "%d", player2->score);
         ScorePlayer2 = LoadFont("../fonts/FreeSans.ttf", buffer);
 
-        // blit rects
         DrawFont(ScorePlayer1, SCREEN_WIDTH/4, 10);
         DrawFont(ScorePlayer2, SCREEN_WIDTH/4 + SCREEN_WIDTH/2, 10);
         BlitRect(app.renderer, &ball_rect);
