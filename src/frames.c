@@ -1,7 +1,6 @@
 #include "headers/common.h"
 
 void CapFramerate(long* then, float* remainder) {
-
     long wait, frame_time;
     wait = 16 + *remainder;
     *remainder -= (int) *remainder;
@@ -15,5 +14,4 @@ void CapFramerate(long* then, float* remainder) {
     SDL_Delay(wait);
     *remainder += 0.667;
     *then = SDL_GetTicks();
-
 }

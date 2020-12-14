@@ -38,19 +38,19 @@ SDL_Texture* LoadFont(char* filename, char buffer[]) {
 
     font = TTF_OpenFont(filename, 24);
     if (!font) {
-        printf("Could not open font: %s\n", TTF_GetError());
+        log_debug("Could not open font: %s.", TTF_GetError());
     }
 
     SDL_Surface* surfaceFont;
     surfaceFont = TTF_RenderText_Solid(font, buffer, color);
     if (!surfaceFont) {
-        printf("Surface could not be initialized: %s\n", SDL_GetError());
+        log_debug("Surface could not be initialized: %s.", SDL_GetError());
     }
 
     SDL_Texture* message;
     message = SDL_CreateTextureFromSurface(app.renderer, surfaceFont);
     if (!message) {
-        printf("Texture could not be initialized: %s\n", SDL_GetError());
+        log_debug("Texture could not be initialized: %s.", SDL_GetError());
     }
 
     SDL_FreeSurface(surfaceFont);

@@ -11,17 +11,14 @@ extern void CleanupAudio(Mix_Chunk* soundEffect);
 extern void PlayerPositions(Paddle* player1, Paddle* player2);
 extern void PlayerBounds(Paddle* player);
 extern void CapFramerate(long* then, float* remainder);
-extern float calcAngle(float, float, float);
-extern char* toString(char str[], int num);
+extern float CalcAngle(float, float, float);
 extern Ball BallPosition(Ball ball);
 extern void BallProps(SDL_Rect* ball_rect, Ball* ball);
-extern void paddleHit(Ball* ball, Paddle* player);
 
 // Utility
 extern void CollisionCheck(Ball* ball, SDL_Rect* ball_rect,
                            Paddle* player1, Paddle* player2,
                            Mix_Chunk* pingHit);
-extern void TrackBall(Ball* ball, Paddle* bot);
 extern void SetSpeed(Paddle* player1, Paddle* player2);
 void SetScore(Paddle* player1, Paddle* player2);
 

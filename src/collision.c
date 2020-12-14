@@ -37,7 +37,7 @@ void CollisionCheck(Ball* ball, SDL_Rect* ball_rect,
         if (ball->speed >= MAXBALLSPEED) {
             ball->speed = MAXBALLSPEED;
         }
-        bounce_angle = calcAngle(player1->position.y, ball->y, player1->position.h);
+        bounce_angle = CalcAngle(player1->position.y, ball->y, player1->position.h);
         ball->vy = sin(bounce_angle) * ball->speed;
         ball->vx = cos(bounce_angle) * ball->speed;
     }
@@ -48,7 +48,7 @@ void CollisionCheck(Ball* ball, SDL_Rect* ball_rect,
         if (ball->speed >= MAXBALLSPEED) {
             ball->speed = MAXBALLSPEED;
         }
-        bounce_angle = calcAngle(player2->position.y, ball->y, player1->position.h);
+        bounce_angle = CalcAngle(player2->position.y, ball->y, player1->position.h);
         ball->vy = sin(bounce_angle) * ball->speed * -1;
         ball->vx = cos(bounce_angle) * ball->speed * -1;
     }

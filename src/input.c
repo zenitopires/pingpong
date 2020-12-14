@@ -13,7 +13,6 @@ void GetInput(void) {
             case SDL_QUIT:
                 app.running = false;
                 exit(0);
-                break;
 
             case SDL_KEYDOWN:
                 ProcessDownKey(&event.key);

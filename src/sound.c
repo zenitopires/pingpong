@@ -6,7 +6,7 @@ Mix_Chunk* LoadSoundEffect(char* filePath) {
     soundEffect = Mix_LoadWAV(filePath);
 
     if (soundEffect == NULL) {
-        printf("Failed to load %s sound effect: %s\n", filePath, Mix_GetError());
+        log_debug("Failed to load %s sound effect: %s.", filePath, Mix_GetError());
         exit(1);
     }
 

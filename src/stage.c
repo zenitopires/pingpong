@@ -1,7 +1,6 @@
 #include "headers/common.h"
 
 void PlayerPositions(Paddle* player1, Paddle* player2) {
-
     player1->position.x = 20;
     player1->position.y = SCREEN_HEIGHT/2 - 80;
     player1->position.h = 150;
@@ -15,7 +14,6 @@ void PlayerPositions(Paddle* player1, Paddle* player2) {
 }
 
 void PlayerBounds(Paddle* player) {
-
     if (player != NULL) {
         if (player->position.y < 15) {
             player->position.y = 0;
@@ -25,5 +23,4 @@ void PlayerBounds(Paddle* player) {
             player->position.y = SCREEN_HEIGHT - player->position.h;
         }
     }
-
 }

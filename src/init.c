@@ -8,17 +8,17 @@
 #include "headers/log.h"
 
 void Init(char* string) {
-    int windowFlags, rendererFlags;
+    int window_flags, renderer_flags;
 
-    windowFlags = 0;
-    rendererFlags = SDL_RENDERER_ACCELERATED;
+    window_flags = 0;
+    renderer_flags = SDL_RENDERER_ACCELERATED;
 
     if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_AUDIO) < 0) {
-        SDL_Log("Cannot initialize SDL: %s", SDL_GetError());
+        log_debug("Cannot initialize SDL: %s.", SDL_GetError());
         exit(1);
     }
     else {
-        printf("SDL initiliazed...\n");
+        log_debug("SDL initialized.");
     }
 
     if (Mix_OpenAudio(22050, MIX_DEFAULT_FORMAT, 2, 4096) == -1) {
@@ -43,7 +43,7 @@ void Init(char* string) {
         SDL_WINDOWPOS_UNDEFINED,
         SCREEN_WIDTH,
         SCREEN_HEIGHT,
-        windowFlags
+        window_flags
     );
 
     if (app.window == NULL) {
@@ -53,7 +53,7 @@ void Init(char* string) {
 
     SDL_SetHint(SDL_HINT_RENDER_SCALE_QUALITY, "linear");
 
-    app.renderer = SDL_CreateRenderer(app.window, -1, rendererFlags);
+    app.renderer = SDL_CreateRenderer(app.window, -1, renderer_flags);
 
     if (app.renderer == NULL) {
         log_debug("Could not create renderer: %s", SDL_GetError());
