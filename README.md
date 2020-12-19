@@ -18,10 +18,13 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
       $ sudo pacman -S gcc
       $ sudo pacman -S make
       $ sudo pacman -S cmake
+ 
+
+
 
 ## Dependencies
 ### Required
-`SDL2`, `SDL_mixer`, `SDL_ttf`
+`SDL2`, `SDL_mixer`, `SDL_ttf`, `SDL_image`
 
 ### SDL2
 
@@ -37,6 +40,14 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
       $ sudo pacman -S sdl2_image
       $ sudo pacman -S sdl2_ttf
       $ sudo pacman -S sdl2_mixer
+      
+- #### Windows
+  For windows download the appropriate development libraries for your MinGW compiler.
+  
+      $ https://www.libsdl.org/download-2.0.php
+      $ https://www.libsdl.org/projects/SDL_image/
+      $ https://www.libsdl.org/projects/SDL_ttf/
+      $ https://www.libsdl.org/projects/SDL_ttf/
 
 ## Usage
 
@@ -49,3 +60,12 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
     $ cd build
     $ make
     $ ./PingPong
+    
+### Windows Instructions
+    $ git clone https://github.com/zenitopires/pingpong.git
+    $ cd PingPong
+    $ mkdir build
+    $ cmake -S . -B build
+    $ cd build
+    $ mingw32-make.exe
+    $ .\PingPong
