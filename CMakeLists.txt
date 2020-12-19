@@ -19,7 +19,14 @@ add_executable(PingPong src/main.c
         src/sound.c
         src/stage.c
         src/util.c
-        src/collision.c src/headers/util.h)
+        src/collision.c src/headers/util.h src/headers/ball.h)
 
 message("Linking libraries...")
-target_link_libraries(PingPong SDL2_mixer SDL2_ttf SDL2 m)
+
+if (WIN32)
+    target_link_libraries(PingPong mingw32 SDL2main SDL2_mixer SDL2_ttf SDL2 m)
+endif(WIN32)
+
+if (UNIX)
+    target_link_libraries(PingPong SDL2_mixer SDL2_ttf SDL2 m)
+endif(UNIX)

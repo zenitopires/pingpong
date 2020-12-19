@@ -1,6 +1,6 @@
 #include "headers/main.h"
 
-int main()
+int main(int argc, char *argv[])
 {
     long then;
     float remainder, bounceAngle;

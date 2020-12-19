@@ -1,7 +1,7 @@
 #include <time.h>
-
 #include "headers/structs.h"
 #include "headers/defs.h"
+#include "headers/ball.h"
 
 Ball BallPosition(Ball ball) {
     srand(time(NULL));
