@@ -63,6 +63,7 @@ void Init(char* string) {
 }
 
 void CleanUp(void) {
+    log_debug("Cleaning up SDL window and renderer.");
     SDL_DestroyRenderer(app.renderer);
     SDL_DestroyWindow(app.window);
     SDL_Quit();

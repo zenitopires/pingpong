@@ -37,6 +37,9 @@ static void ProcessDownKey(SDL_KeyboardEvent* event)
         if (event->keysym.scancode == SDL_SCANCODE_DOWN) {
             app.down = 1;
         }
+        if (event->keysym.scancode == SDL_SCANCODE_ESCAPE) {
+            app.running = false;
+        }
     }
 }
 
