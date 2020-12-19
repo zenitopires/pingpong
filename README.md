@@ -65,7 +65,7 @@ gcc should be installed by default on Fedora (but if for some reason it isn't...
     $ git clone https://github.com/zenitopires/pingpong.git
     $ cd PingPong
     $ mkdir build
-    $ cmake -S . -B build
+    $ cmake -G "MinGW Makefiles" -S . -B build
     $ cd build
     $ mingw32-make.exe
     $ .\PingPong
