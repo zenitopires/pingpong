@@ -1,5 +1,5 @@
 # Ping Pong Clone
-A ping pong game clone. Created using the SDL.
+A ping pong game clone. Created using SDL.
 
 ![Preview of Ping Pong Clone](https://github.com/zenitopires/PingPong/blob/master/img/ping_pong.png)
 
